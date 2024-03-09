@@ -24,6 +24,7 @@ from app_moviemanager.api import viewsets as moviesviewsets
 
 route = routers.DefaultRouter()
 route.register(r'movies', moviesviewsets.MoviesViewSet, basename="Movies")
+route.register(r'review', moviesviewsets.AnalysisViewSet, basename="Reviews")
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -6,12 +6,6 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
 class MoviesViewSet(viewsets.ModelViewSet):
-    serializer_class = serializers.MoviesSerializer
-    queryset = models.Movies.objects.all()
-
-    def create(self, request):
-        response = requests.get(api_url)
-        print(response.json())
 
     def list(self, request):
         titulo = request.query_params.get("nome")
@@ -24,3 +18,8 @@ class MoviesViewSet(viewsets.ModelViewSet):
         api_url = f'http://www.omdbapi.com/?t={titulo}&type=movie&apikey=1487ead9&'
         response = requests.get(api_url)
         return Response(response.json())
+
+
+class AnalysisViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.MovieAnalysisSerializer
+    queryset = models.MovieAnalysis.objects.all()
