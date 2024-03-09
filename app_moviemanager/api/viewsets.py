@@ -51,3 +51,9 @@ class AnalysisViewSet(viewsets.ModelViewSet):
         titulo = request.data.get("nome")
         models.MovieAnalysis.objects.filter(nome=titulo).update(nota=nota_update, comentario=comentario_update)
         return Response("Comentário atualizado")
+    
+    def destroy(self, request, pk=None):
+        obj = self.get_object()
+        obj.delete()
+        return Response("Avaliação excluída")
+        
