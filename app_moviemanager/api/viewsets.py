@@ -5,6 +5,7 @@ import requests
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
+
 class MoviesViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.MovieAnalysisSerializer
     queryset = models.MovieAnalysis.objects.all()
@@ -53,10 +54,9 @@ class AnalysisViewSet(viewsets.ModelViewSet):
         obj.comentario= comentario_update
         obj.save()
 
-        return Response("Comentário atualizado")
+        return Response("Avaliação atualizada")
     
     def destroy(self, request, pk=None):
         obj = self.get_object()
         obj.delete()
         return Response("Avaliação excluída")
-        
