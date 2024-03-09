@@ -1,6 +1,7 @@
 from django.db import models
 
 
+# Modelo de análise de filme: campos que ficam armazenados no banco de dados
 class MovieAnalysis(models.Model):
     nome = models.CharField(max_length=50)
     lancamento = models.CharField(max_length=10)

@@ -26,7 +26,9 @@ from app_moviemanager.api import viewsets as moviesviewsets
 route = routers.DefaultRouter()
 route.register(r'movies', moviesviewsets.MoviesViewSet, basename="Movies")
 route.register(r'review', moviesviewsets.AnalysisViewSet, basename="Reviews")
-
+# - 'movies': rota utilizada para mostrar as informações de um filme buscado pelo parâmetro 'nome' (teste da função retrieve)
+# - 'review': rota utilizada para os testes das funções list, create, update e destroy, associada ao Id do filme
+# no banco de dados
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -6,6 +6,9 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
 
+# ViewSet que lida com buscar os filmes (GET)
+# list(): mostra todos os filmes já avaliados e cadastrados no banco de dados
+# retrieve(): mostra um filme buscado pela API do OMDb
 class MoviesViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.MovieAnalysisSerializer
     queryset = models.MovieAnalysis.objects.all()
@@ -23,6 +26,11 @@ class MoviesViewSet(viewsets.ModelViewSet):
         return Response(response.json())
 
 
+# ViewSet que lida com as funções POST, PUT, DELETE
+# - create(): a variável 'titulo' é usada para associar os valores 'nota_create' e 'comentario_create' 
+# aos campos 'nota' e 'comentario'. Além disso, os outros campos componentes do model são buscados na API
+# - update(): atualiza as variáveis 'nota' e 'comentario' com os valores novos em 'nota_update' e 'comentario_update'
+# - destroy(): deleta o objeto
 class AnalysisViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.MovieAnalysisSerializer
     queryset = models.MovieAnalysis.objects.all()
