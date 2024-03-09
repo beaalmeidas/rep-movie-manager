@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
 class MoviesViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.MovieAnalysisSerializer
+    queryset = models.MovieAnalysis.objects.all()
 
     def list(self, request):
         titulo = request.query_params.get("nome")
@@ -40,5 +42,12 @@ class AnalysisViewSet(viewsets.ModelViewSet):
 
         review_database = models.MovieAnalysis(nome=nome_create, lancamento=lancamento_create, diretor=diretor_create, sinopse=sinopse_create, nota=nota_create, comentario=comentario_create)
         review_database.save()
-
+        return Response("Avaliação enviada")
     
+    def update(self, request, pk=None):
+        nota_update = titulo = request.data.get("nota atualizada")
+        comentario_update = titulo = request.data.get("comentario atualizado")
+        
+        titulo = request.data.get("nome")
+        models.MovieAnalysis.objects.filter(nome=titulo).update(nota=nota_update, comentario=comentario_update)
+        return Response("Comentário atualizado")
