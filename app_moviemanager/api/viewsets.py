@@ -48,8 +48,11 @@ class AnalysisViewSet(viewsets.ModelViewSet):
         nota_update = titulo = request.data.get("nota atualizada")
         comentario_update = titulo = request.data.get("comentario atualizado")
         
-        titulo = request.data.get("nome")
-        models.MovieAnalysis.objects.filter(nome=titulo).update(nota=nota_update, comentario=comentario_update)
+        obj = self.get_object()
+        obj.nota = nota_update
+        obj.comentario= comentario_update
+        obj.save()
+
         return Response("Comentário atualizado")
     
     def destroy(self, request, pk=None):
